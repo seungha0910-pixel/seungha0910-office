@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF6F0">
+<meta name="description" content="승하님 전용 뜽하 비서실 — 오피스 맵, 회의실, 작업실, 비서현황, 메모">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%91%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%91%3C/text%3E%3C/svg%3E">
+<title>승하님 비서실 · 뜽하 전용</title>
+<style>
+  :root{
+    --cream:#FAF6F0;
+    --cream-2:#F3EAE0;
+    --card:#FFFFFF;
+    --brown:#8B4513;
+    --brown-d:#6B3410;
+    --brown-l:#B4703F;
+    --peach:#F9E8DC;
+    --peach-2:#FDF3EC;
+    --ink:#3D2B1F;
+    --muted:#8C7A6B;
+    --line:#ECE0D3;
+    --ok:#3F9C5B;
+    --shadow:0 6px 20px rgba(139,69,19,.08);
+    --shadow-s:0 2px 8px rgba(139,69,19,.06);
+    --radius:20px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  button{font-family:inherit;cursor:pointer}
+  ::selection{background:var(--peach)}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg,#FFFDFB 0%,var(--cream) 100%);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:saturate(140%) blur(8px);
+  }
+  .head-in{
+    max-width:1080px;margin:0 auto;
+    padding:12px 16px 10px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:11px;min-width:0;flex:1}
+  .brand-badge{
+    width:44px;height:44px;flex:0 0 44px;border-radius:14px;
+    display:grid;place-items:center;font-size:22px;
+    background:radial-gradient(circle at 30% 25%,#FFF6E8,#F6E2C8 70%);
+    border:1px solid #EFD9BE;box-shadow:var(--shadow-s);
+  }
+  .brand h1{
+    font-size:17px;margin:0;letter-spacing:-.3px;font-weight:800;color:var(--brown-d);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .brand .sub{
+    display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);margin-top:1px;
+  }
+  .head-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .conn{
+    display:inline-flex;align-items:center;gap:5px;
+    background:#EAF6EE;color:#2F7A48;border:1px solid #CDE8D6;
+    font-size:11.5px;font-weight:700;padding:5px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(63,156,91,.15)}
+  .icon-btn{
+    width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
+    background:var(--card);display:grid;place-items:center;font-size:17px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .icon-btn:active{transform:scale(.94);background:var(--cream-2)}
+
+  /* ---------- tabs ---------- */
+  nav.tabs{
+    position:sticky;top:68px;z-index:35;
+    background:var(--cream);
+    border-bottom:1px solid var(--line);
+  }
+  .tabs-in{
+    max-width:1080px;margin:0 auto;
+    display:flex;gap:6px;padding:8px 12px;
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .tabs-in::-webkit-scrollbar{display:none}
+  .tab{
+    flex:1 0 auto;white-space:nowrap;
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    padding:10px 12px;border-radius:14px;border:1px solid transparent;
+    background:transparent;color:var(--muted);font-size:13px;font-weight:700;
+    transition:all .18s ease;
+  }
+  .tab .t-ico{font-size:15px}
+  .tab:active{transform:scale(.97)}
+  .tab[aria-selected="true"]{
+    background:var(--brown);color:#fff;box-shadow:0 6px 16px rgba(139,69,19,.22);
+  }
+
+  /* ---------- layout ---------- */
+  main{max-width:1080px;margin:0 auto;padding:14px 14px 40px}
+  .panel{display:none;animation:fade .22s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px;
+  }
+  .card + .card{margin-top:12px}
+  .card h2{font-size:14.5px;margin:0 0 10px;color:var(--brown-d);display:flex;align-items:center;gap:7px}
+  .muted{color:var(--muted);font-size:12.5px}
+  .sec-title{font-size:12px;font-weight:800;color:var(--brown);letter-spacing:.4px;margin:18px 2px 8px;text-transform:uppercase}
+
+  /* ---------- office map ---------- */
+  .banner{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 16px;border-radius:var(--radius);
+    background:linear-gradient(120deg,#FFF8F0,#F9E7D6 60%,#F6DCC4);
+    border:1px solid #F0DAC5;box-shadow:var(--shadow-s);margin-bottom:12px;
+  }
+  .banner .b-ico{font-size:26px;animation:bob 2.8s ease-in-out infinite}
+  .banner b{display:block;font-size:14.5px;color:var(--brown-d);letter-spacing:-.2px}
+  .banner span{font-size:12.5px;color:#8A6A52}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+  .map-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .seg{display:inline-flex;background:var(--cream-2);border:1px solid var(--line);border-radius:12px;padding:3px}
+  .seg button{
+    border:0;background:transparent;padding:7px 13px;border-radius:9px;
+    font-size:12.5px;font-weight:700;color:var(--muted);transition:all .15s ease;
+  }
+  .seg button[aria-pressed="true"]{background:var(--card);color:var(--brown);box-shadow:var(--shadow-s)}
+  .switch{
+    margin-left:auto;display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;font-weight:700;color:var(--brown);
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:5px 11px 5px 9px;
+  }
+  .switch .track{
+    width:36px;height:20px;border-radius:999px;background:#DCD0C4;position:relative;transition:background .18s ease;
+  }
+  .switch .knob{
+    position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.18);transition:left .18s ease;
+  }
+  .switch[aria-pressed="true"] .track{background:var(--brown)}
+  .switch[aria-pressed="true"] .knob{left:18px}
+
+  .map-wrap{
+    position:relative;border-radius:18px;overflow:hidden;background:#F6EDE4;
+    border:1px solid var(--line);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
+  }
+  .map-wrap img{width:100%;height:auto;display:block;user-select:none;-webkit-user-drag:none}
+  .pin{
+    position:absolute;transform:translate(-50%,-50%);
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 10px;border-radius:999px;border:1px solid #EAD6C2;
+    background:rgba(255,255,255,.94);color:var(--brown-d);
+    font-size:11.5px;font-weight:800;white-space:nowrap;
+    box-shadow:0 4px 12px rgba(107,52,16,.18);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .pin .p-ico{font-size:13px}
+  .pin:active{transform:translate(-50%,-50%) scale(.94)}
+  .pin::after{
+    content:"";position:absolute;inset:-4px;border-radius:999px;
+    border:2px solid rgba(139,69,19,.16);pointer-events:none;
+  }
+  .map-wrap.motion .pin{animation:float 3.4s ease-in-out infinite}
+  .map-wrap.motion .pin:nth-of-type(2){animation-delay:.6s}
+  .map-wrap.motion .pin:nth-of-type(3){animation-delay:1.2s}
+  @keyframes float{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-6px)}}
+  @media (prefers-reduced-motion: reduce){
+    .map-wrap.motion .pin,.banner .b-ico{animation:none}
+  }
+
+  /* 기본(플랫) 스타일 맵 */
+  .plan{
+    display:grid;gap:8px;padding:10px;
+    grid-template-columns:1.15fr .85fr;
+    grid-template-areas:"meet command" "desk lounge";
+    background:linear-gradient(180deg,#F7EEE4,#F2E6D9);
+    aspect-ratio:1/1;
+  }
+  .zone{
+    border-radius:14px;border:1px dashed #DEC7B1;background:rgba(255,255,255,.72);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    color:var(--brown-d);font-size:12px;font-weight:800;text-align:center;padding:8px;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .zone:hover{background:#fff}
+  .zone:active{transform:scale(.98)}
+  .zone .z-ico{font-size:22px}
+  .zone small{font-weight:600;color:var(--muted);font-size:10.5px}
+  .z-meet{grid-area:meet;background:rgba(255,255,255,.9)}
+  .z-command{grid-area:command;background:rgba(255,246,232,.95)}
+  .z-desk{grid-area:desk;background:rgba(255,255,255,.62)}
+  .z-lounge{grid-area:lounge;background:rgba(255,241,232,.95)}
+  .map-wrap.motion .zone .z-ico{animation:bob 3s ease-in-out infinite}
+
+  /* ---------- chat ---------- */
+  .room-switch{display:flex;gap:7px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+  .room-switch::-webkit-scrollbar{display:none}
+  .chip{
+    white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);
+    border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:700;
+    display:inline-flex;align-items:center;gap:6px;transition:all .15s ease;
+  }
+  .chip[aria-pressed="true"]{
+    background:var(--peach);border-color:#EFD3BE;color:var(--brown-d);box-shadow:var(--shadow-s);
+  }
+  .chip:active{transform:scale(.97)}
+
+  .chat-head{
+    display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);
+    padding:2px 2px 10px;border-bottom:1px dashed var(--line);margin-bottom:12px;
+  }
+  .chat-head b{color:var(--brown);font-size:12.5px}
+  .live{display:inline-flex;align-items:center;gap:4px;font-weight:700;color:var(--ok);font-size:11px}
+
+  .chat-body{
+    display:flex;flex-direction:column;gap:14px;
+    max-height:min(58vh,520px);overflow-y:auto;padding:2px 2px 6px;
+    scroll-behavior:smooth;
+  }
+  .msg{display:flex;gap:8px;max-width:100%}
+  .msg .av{
+    width:34px;height:34px;flex:0 0 34px;border-radius:11px;display:grid;place-items:center;
+    font-size:17px;background:radial-gradient(circle at 30% 25%,#FFF8EE,#F3E3CE);border:1px solid #EFDCC6;
+  }
+  .msg .av.me{background:radial-gradient(circle at 30% 25%,#FFF3EA,#F7DDCB);border-color:#EFD0BA}
+  .msg .body{min-width:0}
+  .msg .who{font-size:11.5px;font-weight:800;color:var(--brown);margin:0 0 4px 2px}
+  .msg .who span{font-weight:600;color:var(--muted);margin-left:5px;font-size:10.5px}
+  .bubble{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    border-top-left-radius:6px;padding:10px 13px;font-size:13.8px;line-height:1.62;
+    box-shadow:var(--shadow-s);color:var(--ink);word-break:break-word;white-space:pre-wrap;
+  }
+  .msg.me{flex-direction:row-reverse}
+  .msg.me .body{display:flex;flex-direction:column;align-items:flex-end}
+  .msg.me .who{margin-right:2px;color:var(--brown-d)}
+  .msg.me .bubble{
+    background:var(--peach);border-color:#EFD6C4;border-top-left-radius:16px;border-top-right-radius:6px;
+    color:#5A3520;
+  }
+  .bubble .mention{color:var(--brown);font-weight:800;background:#FFF2E6;border-radius:6px;padding:0 3px}
+
+  .composer{
+    margin-top:12px;border-top:1px solid var(--line);padding-top:12px;
+  }
+  .mention-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+  .mention-row::-webkit-scrollbar{display:none}
+  .mention{
+    border:1px dashed #E3CBB4;background:#FFF9F2;color:var(--brown);
+    border-radius:999px;padding:6px 11px;font-size:12px;font-weight:800;white-space:nowrap;
+  }
+  .mention:active{transform:scale(.96)}
+  .input-row{display:flex;gap:8px;align-items:flex-end}
+  .input-row textarea{
+    flex:1;resize:none;min-height:44px;max-height:120px;
+    border:1px solid var(--line);border-radius:14px;background:var(--cream);
+    padding:11px 13px;font-size:14px;font-family:inherit;color:var(--ink);
+    outline:none;transition:border-color .15s ease, background .15s ease;
+  }
+  .input-row textarea:focus{border-color:var(--brown-l);background:#fff}
+  .send{
+    flex:0 0 auto;height:44px;padding:0 16px;border-radius:14px;border:0;
+    background:var(--brown);color:#fff;font-size:13.5px;font-weight:800;
+    box-shadow:0 6px 16px rgba(139,69,19,.24);transition:transform .15s ease,filter .15s ease;
+  }
+  .send:active{transform:scale(.96);filter:brightness(.95)}
+
+  /* ---------- tasks ---------- */
+  .task-summary{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);margin-bottom:10px}
+  .bar{flex:1;height:7px;border-radius:999px;background:var(--cream-2);overflow:hidden}
+  .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,#C98B56,var(--brown));border-radius:999px;transition:width .3s ease}
+  .task{
+    display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;
+    background:var(--cream);border:1px solid var(--line);margin-bottom:8px;
+    transition:background .15s ease,opacity .2s ease;
+  }
+  .task .chk{
+    flex:0 0 22px;width:22px;height:22px;margin-top:1px;border-radius:7px;border:2px solid #E0CBB6;
+    background:#fff;display:grid;place-items:center;color:transparent;font-size:12px;font-weight:900;
+    transition:all .15s ease;
+  }
+  .task.done .chk{background:var(--ok);border-color:var(--ok);color:#fff}
+  .task .tx{flex:1;min-width:0}
+  .task .tx .t{font-size:13.8px;font-weight:600;letter-spacing:-.2px;word-break:break-word}
+  .task.done .tx .t{text-decoration:line-through;color:var(--muted);opacity:.75}
+  .task .meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+  .tag{
+    font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:999px;
+    background:#FFF3E7;color:#9A6334;border:1px solid #F2E0CC;
+  }
+  .tag.auto{background:#EDF5F1;color:#3F7A62;border-color:#D8E9E1}
+  .tag.now{background:#FDECEA;color:#B04A38;border-color:#F6D9D4}
+  .del{
+    flex:0 0 auto;border:0;background:transparent;color:#C4B3A4;font-size:15px;
+    padding:2px 4px;border-radius:8px;line-height:1;
+  }
+  .del:active{background:#F3E7DC;color:var(--brown)}
+  .add-row{display:flex;gap:8px;margin-top:10px}
+  .add-row input{
+    flex:1;border:1px solid var(--line);background:var(--cream);border-radius:13px;
+    padding:11px 13px;font-size:14px;font-family:inherit;outline:none;
+  }
+  .add-row input:focus{border-color:var(--brown-l);background:#fff}
+  .btn{
+    border:0;border-radius:13px;padding:0 15px;height:44px;background:var(--brown);color:#fff;
+    font-size:13.5px;font-weight:800;box-shadow:0 6px 16px rgba(139,69,19,.2);
+  }
+  .btn.ghost{background:var(--card);color:var(--brown);border:1px solid var(--line);box-shadow:none}
+  .btn:active{transform:scale(.97)}
+  .empty{
+    text-align:center;color:var(--muted);font-size:12.5px;padding:22px 10px;
+    border:1px dashed var(--line);border-radius:14px;background:var(--cream);
+  }
+
+  /* ---------- staff ---------- */
+  .staff{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:14px;border-radius:16px;background:linear-gradient(140deg,#FFFDFA,#F9EDE0);
+    border:1px solid #EFDCC9;
+  }
+  .staff .sav{
+    width:52px;height:52px;flex:0 0 52px;border-radius:16px;display:grid;place-items:center;font-size:26px;
+    background:radial-gradient(circle at 30% 25%,#FFF6E6,#F4DFC4);border:1px solid #EAD3B7;
+    box-shadow:var(--shadow-s);
+  }
+  .staff .nm{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .staff .nm b{font-size:15px;color:var(--brown-d)}
+  .status{
+    font-size:10.5px;font-weight:800;color:#2F7A48;background:#EAF6EE;
+    border:1px solid #CDE8D6;border-radius:999px;padding:2px 8px;
+  }
+  .staff .role{font-size:12px;color:var(--muted);margin-top:1px}
+  .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .skill{
+    font-size:11.5px;font-weight:700;color:#7A5A44;background:#fff;
+    border:1px solid var(--line);border-radius:999px;padding:4px 9px;
+  }
+  .steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  .steps li{
+    counter-increment:s;position:relative;padding:0 0 12px 34px;font-size:13px;color:#5C4636;
+  }
+  .steps li::before{
+    content:counter(s);position:absolute;left:0;top:0;
+    width:23px;height:23px;border-radius:8px;background:var(--peach);color:var(--brown);
+    display:grid;place-items:center;font-size:11.5px;font-weight:900;border:1px solid #EFD6C4;
+  }
+  .steps li:last-child{padding-bottom:0}
+  .kv{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .kv:last-child{border-bottom:0}
+  .kv span{color:var(--muted)}
+  .kv b{color:#4E3A2C;font-weight:700;text-align:right}
+
+  /* ---------- notes ---------- */
+  .note{
+    background:linear-gradient(180deg,#FFFDF7,#FEF8EA);
+    border:1px solid #F0E3C9;border-radius:14px;padding:12px 13px;margin-bottom:9px;
+    box-shadow:var(--shadow-s);position:relative;
+  }
+  .note p{margin:0;font-size:13.8px;line-height:1.6;white-space:pre-wrap;word-break:break-word;color:#4A3A2A}
+  .note .nmeta{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+  .note .ntime{font-size:10.5px;color:#B49B7F;font-weight:700}
+  .note .del{font-size:13px}
+  textarea.memo{
+    width:100%;min-height:86px;resize:vertical;border:1px solid var(--line);border-radius:14px;
+    background:var(--cream);padding:12px 13px;font-size:14px;font-family:inherit;outline:none;line-height:1.6;
+  }
+  textarea.memo:focus{border-color:var(--brown-l);background:#fff}
+  .memo-row{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+
+  /* ---------- modal ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:80;display:none;
+    background:rgba(61,43,31,.42);backdrop-filter:blur(3px);
+    align-items:flex-end;justify-content:center;padding:0;
+  }
+  .modal.open{display:flex;animation:fade .18s ease}
+  .sheet{
+    width:100%;max-width:520px;background:var(--card);
+    border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));
+    box-shadow:0 -10px 40px rgba(0,0,0,.18);max-height:88vh;overflow:auto;
+    animation:up .22s ease;
+  }
+  @keyframes up{from{transform:translateY(18px)}to{transform:none}}
+  .sheet h3{margin:0 0 4px;font-size:16px;color:var(--brown-d);display:flex;align-items:center;gap:8px}
+  .sheet .lead{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:12px;font-weight:800;color:var(--brown);margin-bottom:6px}
+  .field input{
+    width:100%;border:1px solid var(--line);background:var(--cream);border-radius:12px;
+    padding:11px 12px;font-size:13.5px;font-family:inherit;outline:none;
+  }
+  .field input:focus{border-color:var(--brown-l);background:#fff}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+  .sheet-actions{display:flex;gap:8px;margin-top:6px}
+  .sheet-actions .btn{flex:1}
+  .note-box{
+    background:var(--peach-2);border:1px solid #F2DFD0;border-radius:12px;
+    padding:11px 12px;font-size:12px;color:#7A5C46;line-height:1.6;margin-top:12px;
+  }
+
+  /* ---------- toast ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+    background:#3D2B1F;color:#fff;font-size:12.5px;font-weight:700;
+    padding:10px 16px;border-radius:999px;opacity:0;pointer-events:none;
+    transition:all .25s ease;z-index:90;box-shadow:0 10px 26px rgba(0,0,0,.24);
+    max-width:88vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------- desktop ---------- */
+  @media (min-width:820px){
+    body{font-size:15px}
+    .head-in{padding:16px 24px 12px}
+    .brand-badge{width:50px;height:50px;flex-basis:50px;font-size:25px;border-radius:16px}
+    .brand h1{font-size:19px}
+    nav.tabs{top:78px}
+    .tabs-in{padding:10px 24px;gap:8px;justify-content:center}
+    .tab{flex:0 0 auto;padding:11px 26px;font-size:13.5px}
+    main{padding:20px 24px 60px}
+    .card{padding:20px 22px}
+    .map-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:14px;align-items:start}
+    .map-grid .card + .card{margin-top:0}
+    .plan{aspect-ratio:auto;min-height:420px}
+    .chat-body{max-height:min(52vh,460px)}
+    .panel-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+    .panel-split .card + .card{margin-top:0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .grid-2 .card + .card{margin-top:0}
+    .modal{align-items:center;padding:24px}
+    .sheet{border-radius:22px;animation:pop .2s ease}
+    @keyframes pop{from{transform:scale(.97);opacity:.6}to{transform:none;opacity:1}}
+  }
+  @media (min-width:1100px){
+    .banner b{font-size:15.5px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-in">
+    <div class="brand">
+      <div class="brand-badge">👑</div>
+      <div style="min-width:0">
+        <h1>승하님 비서실</h1>
+        <div class="sub"><span>🐣 뜽하 전용</span></div>
+      </div>
+    </div>
+    <div class="head-right">
+      <span class="conn" title="비서실이 열려 있어요"><i class="dot"></i>연결됨</span>
+      <button class="icon-btn" id="btnSettings" aria-label="설정 열기">⚙️</button>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="비서실 메뉴">
+    <div class="tabs-in" id="tabbar">
+      <button class="tab" role="tab" data-tab="map" aria-selected="true"><span class="t-ico">🗺️</span>오피스 맵</button>
+      <button class="tab" role="tab" data-tab="meeting" aria-selected="false"><span class="t-ico">💬</span>회의실</button>
+      <button class="tab" role="tab" data-tab="tasks" aria-selected="false"><span class="t-ico">📋</span>작업실</button>
+      <button class="tab" role="tab" data-tab="staff" aria-selected="false"><span class="t-ico">📊</span>비서현황</button>
+      <button class="tab" role="tab" data-tab="memo" aria-selected="false"><span class="t-ico">📝</span>메모</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- ============ 오피스 맵 ============ -->
+  <section class="panel active" id="panel-map" role="tabpanel" aria-label="오피스 맵">
+    <div class="banner">
+      <div class="b-ico">🐣</div>
+      <div>
+        <b>대장님, 비서 뜽하가 대기 중이에요</b>
+        <span>방을 눌러 회의실로 이동해 보세요.</span>
+      </div>
+    </div>
+
+    <div class="map-tools">
+      <div class="seg" id="styleSeg" role="group" aria-label="맵 스타일">
+        <button data-style="clay" aria-pressed="true">클레이</button>
+        <button data-style="basic" aria-pressed="false">기본</button>
+      </div>
+      <button class="switch" id="motionSwitch" aria-pressed="true" aria-label="움직임 켜기/끄기">
+        <span class="track"><span class="knob"></span></span>움직임 ON
+      </button>
+    </div>
+
+    <div class="map-grid">
+      <div class="card" style="padding:10px">
+        <div class="map-wrap motion" id="mapWrap">
+          <!-- 클레이 맵 -->
+          <div id="clayMap">
+            <img src="assets/office-clay.png" alt="따뜻한 우드 톤의 미니어처 비서실: 회의실, 지휘실, 라운지가 있는 클레이 3D 오피스" width="1080" height="1080" decoding="async">
+            <button class="pin" data-room="meeting" style="left:26%;top:44%" aria-label="대회의실로 이동">
+              <span class="p-ico">🏛️</span>대회의실
+            </button>
+            <button class="pin" data-room="command" style="left:60%;top:24%" aria-label="지휘실로 이동">
+              <span class="p-ico">🎯</span>지휘실
+            </button>
+            <button class="pin" data-room="lounge" style="left:63%;top:73%" aria-label="라운지로 이동">
+              <span class="p-ico">☕</span>라운지
+            </button>
+          </div>
+          <!-- 기본 맵 -->
+          <div id="basicMap" class="plan" hidden>
+            <button class="zone z-meet" data-room="meeting"><span class="z-ico">🏛️</span>대회의실<small>6인 원목 테이블</small></button>
+            <button class="zone z-command" data-room="command"><span class="z-ico">🎯</span>지휘실<small>뜽하의 책상</small></button>
+            <button class="zone z-desk" data-room="desk"><span class="z-ico">🖥️</span>업무 데스크<small>작업 공간</small></button>
+            <button class="zone z-lounge" data-room="lounge"><span class="z-ico">☕</span>라운지<small>소파 · 커피</small></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🛎️ 오늘의 비서실</h2>
+        <div class="kv"><span>대기 중인 비서</span><b>뜽하 1명</b></div>
+        <div class="kv"><span>모드</span><b id="modeLabel">클레이 · 움직임 ON</b></div>
+        <div class="kv"><span>저장 위치</span><b id="storeLabel">이 기기 (localStorage)</b></div>
+        <div class="kv"><span>회의실 방</span><b>대회의실 · 지휘실 · 라운지</b></div>
+        <p class="muted" style="margin:12px 0 12px">방 핀을 누르면 바로 그 방으로 들어가서 말을 걸 수 있어요. <b style="color:var(--brown)">@뜽하</b>를 붙이면 뜽하가 대답해요.</p>
+        <button class="btn" style="width:100%" id="goMeeting">💬 회의실 바로 가기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 회의실 ============ -->
+  <section class="panel" id="panel-meeting" role="tabpanel" aria-label="회의실">
+    <div class="card">
+      <div class="room-switch" id="roomSwitch" role="group" aria-label="방 선택">
+        <button class="chip" data-room="meeting" aria-pressed="true"><span>🏛️</span>대회의실</button>
+        <button class="chip" data-room="command" aria-pressed="false"><span>🎯</span>지휘실</button>
+        <button class="chip" data-room="lounge" aria-pressed="false"><span>☕</span>라운지</button>
+      </div>
+
+      <div class="chat-head">
+        <b id="chatRoomName">🏛️ 대회의실</b>
+        <span class="live">● <span id="chatRoomState">비서 대기 중</span></span>
+      </div>
+
+      <div class="chat-body" id="chatBody" aria-live="polite" aria-label="대화 내용"></div>
+
+      <div class="composer">
+        <div class="mention-row">
+          <button class="mention" id="mentionBtn">@뜽하</button>
+          <button class="mention" data-insert="안녕? 오늘 일정 브리핑 해줘">오늘 브리핑</button>
+          <button class="mention" data-insert="이번 주 할 일 정리해 줘">할 일 정리</button>
+        </div>
+        <div class="input-row">
+          <textarea id="chatInput" rows="1" placeholder="뜽하에게 말 걸기…  (@뜽하 를 붙이면 대답해요)" aria-label="메시지 입력"></textarea>
+          <button class="send" id="chatSend">보내기</button>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin:8px 4px 0">💡 이 회의실은 이 브라우저에만 저장돼요. 설정에서 Firebase 주소를 넣으면 가족·서브폰 비서와 실시간으로 함께 쓸 수 있어요.</p>
+  </section>
+
+  <!-- ============ 작업실 ============ -->
+  <section class="panel" id="panel-tasks" role="tabpanel" aria-label="작업실">
+    <div class="panel-split">
+      <div class="card">
+        <h2>📋 진행 중 작업</h2>
+        <div class="task-summary">
+          <span id="taskCount">0 / 0 완료</span>
+          <div class="bar"><i id="taskBar"></i></div>
+        </div>
+        <div id="taskList"></div>
+        <div class="add-row">
+          <input id="taskInput" type="text" placeholder="새 작업 추가 (예: 12/10 병원 예약)" aria-label="새 작업">
+          <button class="btn" id="taskAdd">추가</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>⚙️ 자동화 현황</h2>
+        <div class="kv"><span>지메일 자동 정리</span><b>매일 23:00</b></div>
+        <div class="kv"><span>무료체험 레이더</span><b>월 · 목 12:30</b></div>
+        <div class="kv"><span>아침 브리핑</span><b>매일 06:10</b></div>
+        <div class="kv"><span>만기 · 반품 챙김</span><b>날짜 맞춰 알림</b></div>
+        <p class="muted" style="margin:12px 0 0">작업을 체크하면 바로 저장돼요. 알림·자동화는 피클 앱에서 뜽하에게 말 걸어 추가할 수 있어요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 비서현황 ============ -->
+  <section class="panel" id="panel-staff" role="tabpanel" aria-label="비서현황">
+    <div class="grid-2">
+      <div class="card">
+        <h2>📊 비서 현황</h2>
+        <div class="staff">
+          <div class="sav">🐣</div>
+          <div style="min-width:0">
+            <div class="nm"><b>뜽하</b><span class="status">● 가동 중</span></div>
+            <div class="role">승하님 개인 비서 · 24시간 대기</div>
+            <div class="skills">
+              <span class="skill">📅 캘린더</span>
+              <span class="skill">✉️ 지메일 정리</span>
+              <span class="skill">🔮 사주 브리핑</span>
+              <span class="skill">⏰ 일정 알림</span>
+              <span class="skill">📝 초안 작성</span>
+            </div>
+          </div>
+        </div>
+        <div class="kv" style="margin-top:14px"><span>근무 형태</span><b>피클 앱 · 음성/텍스트</b></div>
+        <div class="kv"><span>기억하는 것</span><b>일정 · 가족 · 업무 기록</b></div>
+        <div class="kv"><span>비서실 연결</span><b>웹페이지 (이 화면)</b></div>
+        <div class="kv"><span>확장</span><b>가족·서브폰 비서 합류 가능</b></div>
+      </div>
+
+      <div class="card">
+        <h2>👨‍👩‍👧 가족 비서 합류 안내</h2>
+        <ol class="steps">
+          <li>같이 쓸 사람(또는 서브폰) 번호를 연락처에 저장하고, 피클 앱에서 서로 공개 범위를 열어요.</li>
+          <li>뜽하에게 “OO님 피클도 비서실에 불러 줘”라고 말해요.</li>
+          <li>상대 피클이 수락하면 이 비서실에서 <b>@이름</b>으로 함께 일할 수 있어요.</li>
+        </ol>
+        <div class="note-box">
+          지금은 <b>뜽하 1인 비서실</b>이에요. 설정(⚙️)에서 Firebase Realtime Database 주소를 넣으면 여러 기기·가족 비서가 같은 대화와 작업을 실시간으로 함께 보게 됩니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 메모 ============ -->
+  <section class="panel" id="panel-memo" role="tabpanel" aria-label="메모">
+    <div class="grid-2">
+      <div class="card">
+        <h2>📝 빠른 메모</h2>
+        <textarea class="memo" id="memoInput" placeholder="떠오른 생각, 전화 메모, 챙길 것…"></textarea>
+        <div class="memo-row">
+          <button class="btn ghost" id="memoClear">지우기</button>
+          <button class="btn" id="memoAdd">메모 저장</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>🗂️ 저장된 메모 <span class="muted" id="memoCount" style="font-weight:600"></span></h2>
+        <div id="memoList"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ 설정 모달 ============ -->
+<div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+  <div class="sheet">
+    <h3 id="setTitle">⚙️ 비서실 설정</h3>
+    <p class="lead">지금은 모든 기록이 이 브라우저에만 저장돼요.</p>
+
+    <div class="field">
+      <label for="dbUrl">Firebase Realtime Database URL (선택)</label>
+      <input id="dbUrl" type="url" inputmode="url" placeholder="https://your-project.firebaseio.com" spellcheck="false">
+      <div class="hint">가족·서브폰 비서와 대화를 실시간으로 함께 쓰고 싶을 때만 넣으세요. 비워 두면 이 기기에만 저장됩니다. (Firebase 프로젝트의 Realtime Database를 만들고 주소를 붙여 넣으면 됩니다.)</div>
+    </div>
+
+    <div class="field">
+      <label for="bossName">대장님 표시 이름</label>
+      <input id="bossName" type="text" placeholder="승하" maxlength="12">
+      <div class="hint">채팅에서 이 이름으로 표시돼요.</div>
+    </div>
+
+    <div class="sheet-actions">
+      <button class="btn ghost" id="setCancel">닫기</button>
+      <button class="btn" id="setSave">저장</button>
+    </div>
+
+    <div class="note-box">
+      🔒 이 페이지는 공개 주소지만, 대화·작업·메모는 방문한 사람의 브라우저에만 저장됩니다. 이름·전화번호·예약번호 같은 민감한 정보는 메모에 남기지 않는 걸 권해요.
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- 저장소 ---------------- */
+  var K = {
+    room: "seungha.room.",
+    tasks: "seungha.tasks",
+    memos: "seungha.memos",
+    ui: "seungha.ui",
+    cfg: "seungha.cfg"
+  };
+  var store = {
+    get: function(k, d){
+      try{ var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); }
+      catch(e){ return d; }
+    },
+    set: function(k, v){
+      try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){}
+    }
+  };
+
+  var cfg = store.get(K.cfg, { name: "승하", db: "" });
+  var ui = store.get(K.ui, { style: "clay", motion: true, tab: "map", room: "meeting" });
+
+  var ROOMS = {
+    meeting: { name: "대회의실", icon: "🏛️", state: "비서 대기 중" },
+    command: { name: "지휘실", icon: "🎯", state: "뜽하 근무 중" },
+    lounge:   { name: "라운지", icon: "☕", state: "쉬는 시간" }
+  };
+
+  /* ---------------- 시드 데이터 ---------------- */
+  var SEED_TASKS = [
+    { id: "t1", text: "11/27 14:50 하이원 스마트체크인 알림", tag: "알림", now: true, done: false },
+    { id: "t2", text: "11/30 장관 표창 추천 마감 대기", tag: "업무", done: false },
+    { id: "t3", text: "12/04 19:00 아파트 대림 미팅", tag: "대외", done: false },
+    { id: "t4", text: "12/04 우리은행 퇴직연금 만기 알림", tag: "금융", done: false },
+    { id: "t5", text: "12/07~09 입대의 회장 전자투표", tag: "대외", done: false },
+    { id: "t6", text: "매일 23:00 지메일 자동 정리", tag: "자동화", auto: true, done: false },
+    { id: "t7", text: "월/목 12:30 무료체험 레이더", tag: "자동화", auto: true, done: false }
+  ];
+
+  var SEED_CHATS = {
+    command: [
+      { who: "bot", text: "대장님, 아침 브리핑 준비 끝났습니다! ☀️ 오늘은 14:50 하이원 가족여행 스마트체크인 알림을 맞춰 뒀어요.", time: "07:05" },
+      { who: "me",  text: "오, 오늘 체크인 알림 챙겨줘", time: "07:08" },
+      { who: "bot", text: "네, 대장님! 14:50에 알림 드릴게요. 12/04 퇴직연금 만기와 12/07~09 전자투표도 작업실에 올려 뒀습니다. 🐣", time: "07:08" }
+    ],
+    meeting: [
+      { who: "bot", text: "대회의실입니다. 여기서는 여러 비서가 함께 봐요. 의제를 말씀하시면 정리해 드릴게요.", time: "07:00" },
+      { who: "bot", text: "오늘의 안건 후보: ① 11/30 장관 표창 추천 마감 ② 12/03 조직개편 워크숍 발표 ③ 아파트 회장 재선 일정", time: "07:01" }
+    ],
+    lounge: [
+      { who: "bot", text: "라운지에서 잠깐 쉬고 있어요 ☕ 커피 한 잔 하면서 오늘 이야기 편하게 하셔도 돼요.", time: "07:02" }
+    ]
+  };
+
+  function seedChats(){
+    Object.keys(ROOMS).forEach(function(r){
+      var k = K.room + r;
+      if (localStorage.getItem(k) === null) {
+        var seeded = (SEED_CHATS[r] || []).map(function(m){
+          return { who: m.who, text: m.text, time: m.time };
+        });
+        store.set(k, seeded);
+      }
+    });
+  }
+  seedChats();
+
+  var tasks = store.get(K.tasks, null);
+  if (!tasks) { tasks = SEED_TASKS.slice(); store.set(K.tasks, tasks); }
+  var memos = store.get(K.memos, []);
+  if (!Array.isArray(memos)) memos = [];
+
+  /* ---------------- 유틸 ---------------- */
+  function $(s, r){ return (r || document).querySelector(s); }
+  function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function nowTime(){
+    var d = new Date(), h = d.getHours(), m = d.getMinutes();
+    return (h < 12 ? "오전 " : "오후 ") + (h % 12 === 0 ? 12 : h % 12) + ":" + (m < 10 ? "0" + m : m);
+  }
+  function stamp(){
+    var d = new Date();
+    return d.getFullYear() + "." + (d.getMonth() + 1) + "." + d.getDate() + " " + nowTime();
+  }
+  function uid(){ return "x" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+
+  var toastTimer = null;
+  function toast(msg){
+    var t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2000);
+  }
+
+  /* ---------------- 탭 ---------------- */
+  var TAB_LABEL = { map: "오피스 맵", meeting: "회의실", tasks: "작업실", staff: "비서현황", memo: "메모" };
+  function setTab(name, opts){
+    if (!TAB_LABEL[name]) name = "map";
+    ui.tab = name; store.set(K.ui, ui);
+    $$(".tab").forEach(function(b){
+      b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false");
+    });
+    $$(".panel").forEach(function(p){
+      p.classList.toggle("active", p.id === "panel-" + name);
+    });
+    var active = $('.tab[data-tab="' + name + '"]');
+    if (active && active.scrollIntoView) {
+      try { active.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" }); } catch(e){}
+    }
+    if (!opts || !opts.keepScroll) window.scrollTo({ top: 0, behavior: "smooth" });
+    if (name === "meeting") { renderChat(); scrollChat(); }
+    if (name === "tasks") renderTasks();
+    if (name === "memo") renderMemos();
+  }
+
+  $("#tabbar").addEventListener("click", function(e){
+    var b = e.target.closest(".tab");
+    if (b) setTab(b.dataset.tab);
+  });
+
+  /* ---------------- 오피스 맵 ---------------- */
+  function applyUi(){
+    // style
+    $$("#styleSeg button").forEach(function(b){
+      b.setAttribute("aria-pressed", b.dataset.style === ui.style ? "true" : "false");
+    });
+    $("#clayMap").hidden = ui.style !== "clay";
+    $("#basicMap").hidden = ui.style !== "basic";
+    // motion
+    $("#mapWrap").classList.toggle("motion", !!ui.motion);
+    $("#motionSwitch").setAttribute("aria-pressed", ui.motion ? "true" : "false");
+    $("#motionSwitch").lastChild.textContent = ui.motion ? "움직임 ON" : "움직임 OFF";
+    $("#modeLabel").textContent = (ui.style === "clay" ? "클레이" : "기본") + " · 움직임 " + (ui.motion ? "ON" : "OFF");
+    $("#storeLabel").textContent = cfg.db ? "실시간 동기화 설정됨" : "이 기기 (localStorage)";
+  }
+
+  $("#styleSeg").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-style]");
+    if (!b) return;
+    ui.style = b.dataset.style; store.set(K.ui, ui); applyUi();
+    toast(ui.style === "clay" ? "클레이 스타일로 전환했어요 🎨" : "깔끔한 기본 스타일이에요 🗺️");
+  });
+
+  $("#motionSwitch").addEventListener("click", function(){
+    ui.motion = !ui.motion; store.set(K.ui, ui); applyUi();
+    toast(ui.motion ? "둥실둥실 움직임 켜짐" : "움직임을 껐어요");
+  });
+
+  function gotoRoom(room){
+    ui.room = ROOMS[room] ? room : "meeting";
+    store.set(K.ui, ui);
+    setTab("meeting", { keepScroll: false });
+    renderRooms();
+    renderChat();
+    scrollChat();
+    toast(ROOMS[ui.room].icon + " " + ROOMS[ui.room].name + "으로 이동했어요");
+  }
+
+  document.addEventListener("click", function(e){
+    var pin = e.target.closest("[data-room]");
+    if (pin && !pin.classList.contains("chip")) {
+      var r = pin.dataset.room;
+      if (r === "desk") { setTab("tasks"); toast("🖥️ 업무 데스크 · 작업실로 이동했어요"); return; }
+      if (ROOMS[r]) { gotoRoom(r); }
+    }
+  });
+
+  $("#goMeeting").addEventListener("click", function(){ gotoRoom(ui.room || "meeting"); });
+
+  /* ---------------- 회의실 ---------------- */
+  function renderRooms(){
+    $$("#roomSwitch .chip").forEach(function(c){
+      c.setAttribute("aria-pressed", c.dataset.room === ui.room ? "true" : "false");
+    });
+    var r = ROOMS[ui.room] || ROOMS.meeting;
+    $("#chatRoomName").textContent = r.icon + " " + r.name;
+    $("#chatRoomState").textContent = r.state;
+  }
+
+  function getMsgs(room){ return store.get(K.room + room, []); }
+  function saveMsgs(room, arr){ store.set(K.room + room, arr); }
+
+  function renderChat(){
+    var room = ui.room || "meeting";
+    var body = $("#chatBody");
+    var msgs = getMsgs(room);
+    if (!msgs.length) {
+      body.innerHTML = '<div class="empty">아직 대화가 없어요. 아래에 <b>@뜽하</b>로 말을 걸어 보세요!</div>';
+      return;
+    }
+    body.innerHTML = msgs.map(function(m){
+      var mine = m.who === "me";
+      var text = esc(m.text).replace(/@(뜽하|[\w가-힣]+)/g, '<span class="mention">@$1</span>');
+      var name = mine ? (cfg.name || "승하") + " 대장님" : "뜽하 비서";
+      var av = mine ? "👑" : "🐣";
+      return '<div class="msg ' + (mine ? "me" : "") + '">' +
+        '<div class="av ' + (mine ? "me" : "") + '">' + av + '</div>' +
+        '<div class="body">' +
+          '<div class="who">' + esc(name) + '<span>' + esc(m.time || "") + '</span></div>' +
+          '<div class="bubble">' + text + '</div>' +
+        '</div></div>';
+    }).join("");
+  }
+  function scrollChat(){
+    var b = $("#chatBody");
+    if (b) b.scrollTop = b.scrollHeight;
+  }
+
+  $("#roomSwitch").addEventListener("click", function(e){
+    var c = e.target.closest(".chip");
+    if (!c) return;
+    ui.room = c.dataset.room; store.set(K.ui, ui);
+    renderRooms(); renderChat(); scrollChat();
+  });
+
+  function pushMsg(who, text){
+    var room = ui.room || "meeting";
+    var msgs = getMsgs(room);
+    msgs.push({ who: who, text: text, time: nowTime() });
+    saveMsgs(room, msgs);
+    renderChat(); scrollChat();
+  }
+
+  function botReply(text){
+    var room = ui.room || "meeting";
+    var msgs = getMsgs(room);
+    msgs.push({ who: "bot", text: text, time: nowTime() });
+    saveMsgs(room, msgs);
+    if (ui.tab === "meeting") { renderChat(); scrollChat(); }
+  }
+
+  function sendChat(){
+    var el = $("#chatInput");
+    var v = el.value.trim();
+    if (!v) { el.focus(); return; }
+    pushMsg("me", v);
+    el.value = "";
+    el.style.height = "auto";
+    if (v.indexOf("@뜽하") !== -1) {
+      var btn = $("#chatSend");
+      btn.disabled = true;
+      setTimeout(function(){
+        botReply("네, 대장님! 말씀 확인했습니다 🐣\n이 화면은 비서실 데모예요. 실제 실행(알림·메일·일정)은 피클 앱에서 @뜽하로 말 걸면 뜽하가 바로 처리해 드려요.");
+        btn.disabled = false;
+      }, 700);
+    } else {
+      setTimeout(function(){
+        botReply("말씀 잘 받았어요, 대장님. " + (ROOMS[ui.room] ? ROOMS[ui.room].name : "회의실") + "에 기록해 뒀습니다. 일로 시키실 땐 @뜽하 를 붙여 주세요!");
+      }, 900);
+    }
+  }
+
+  $("#chatSend").addEventListener("click", sendChat);
+  $("#chatInput").addEventListener("keydown", function(e){
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChat(); }
+  });
+  $("#chatInput").addEventListener("input", function(){
+    this.style.height = "auto";
+    this.style.height = Math.min(this.scrollHeight, 120) + "px";
+  });
+  $("#mentionBtn").addEventListener("click", function(){
+    var el = $("#chatInput");
+    if (el.value.indexOf("@뜽하") === -1) {
+      el.value = "@뜽하 " + el.value;
+    }
+    el.focus();
+    el.setSelectionRange(el.value.length, el.value.length);
+  });
+  $$(".mention[data-insert]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var el = $("#chatInput");
+      el.value = b.dataset.insert;
+      el.focus();
+    });
+  });
+
+  /* ---------------- 작업실 ---------------- */
+  function renderTasks(){
+    var list = $("#taskList");
+    var done = tasks.filter(function(t){ return t.done; }).length;
+    $("#taskCount").textContent = done + " / " + tasks.length + " 완료";
+    $("#taskBar").style.width = (tasks.length ? (done / tasks.length * 100) : 0) + "%";
+
+    if (!tasks.length) {
+      list.innerHTML = '<div class="empty">작업이 없어요. 아래에서 추가해 보세요.</div>';
+      return;
+    }
+    list.innerHTML = tasks.map(function(t){
+      var cls = "task" + (t.done ? " done" : "");
+      var tagCls = t.auto ? "tag auto" : (t.now ? "tag now" : "tag");
+      var tag = t.tag ? '<span class="' + tagCls + '">' + esc(t.tag) + '</span>' : "";
+      return '<div class="' + cls + '" data-id="' + t.id + '">' +
+        '<button class="chk" aria-label="' + (t.done ? "완료 취소" : "완료 표시") + '">✓</button>' +
+        '<div class="tx"><div class="t">' + esc(t.text) + '</div>' +
+        (tag ? '<div class="meta">' + tag + '</div>' : "") + '</div>' +
+        '<button class="del" aria-label="삭제">✕</button>' +
+      '</div>';
+    }).join("");
+  }
+
+  $("#taskList").addEventListener("click", function(e){
+    var row = e.target.closest(".task");
+    if (!row) return;
+    var id = row.dataset.id;
+    var item = tasks.filter(function(t){ return t.id === id; })[0];
+    if (!item) return;
+    if (e.target.closest(".chk")) {
+      item.done = !item.done;
+      store.set(K.tasks, tasks);
+      renderTasks();
+      if (item.done) toast("완료! " + item.text.slice(0, 18) + " ✔");
+      return;
+    }
+    if (e.target.closest(".del")) {
+      tasks = tasks.filter(function(t){ return t.id !== id; });
+      store.set(K.tasks, tasks);
+      renderTasks();
+      toast("작업을 지웠어요");
+    }
+  });
+
+  function addTask(){
+    var el = $("#taskInput");
+    var v = el.value.trim();
+    if (!v) { el.focus(); return; }
+    tasks.unshift({ id: uid(), text: v, tag: "직접 추가", done: false });
+    store.set(K.tasks, tasks);
+    el.value = "";
+    renderTasks();
+    toast("작업실에 추가했어요 📋");
+  }
+  $("#taskAdd").addEventListener("click", addTask);
+  $("#taskInput").addEventListener("keydown", function(e){ if (e.key === "Enter") addTask(); });
+
+  /* ---------------- 메모 ---------------- */
+  function renderMemos(){
+    var list = $("#memoList");
+    $("#memoCount").textContent = memos.length ? "(" + memos.length + ")" : "";
+    if (!memos.length) {
+      list.innerHTML = '<div class="empty">아직 메모가 없어요. 왼쪽에서 첫 메모를 남겨 보세요.</div>';
+      return;
+    }
+    list.innerHTML = memos.map(function(n){
+      return '<div class="note" data-id="' + n.id + '">' +
+        '<p>' + esc(n.text) + '</p>' +
+        '<div class="nmeta"><span class="ntime">' + esc(n.time) + '</span>' +
+        '<button class="del" aria-label="메모 삭제">✕</button></div>' +
+      '</div>';
+    }).join("");
+  }
+
+  function addMemo(){
+    var el = $("#memoInput");
+    var v = el.value.trim();
+    if (!v) { el.focus(); return; }
+    memos.unshift({ id: uid(), text: v, time: stamp() });
+    store.set(K.memos, memos);
+    el.value = "";
+    renderMemos();
+    toast("메모를 저장했어요 📝");
+  }
+  $("#memoAdd").addEventListener("click", addMemo);
+  $("#memoClear").addEventListener("click", function(){
+    $("#memoInput").value = "";
+    $("#memoInput").focus();
+  });
+  $("#memoList").addEventListener("click", function(e){
+    var del = e.target.closest(".del");
+    if (!del) return;
+    var id = del.closest(".note").dataset.id;
+    memos = memos.filter(function(n){ return n.id !== id; });
+    store.set(K.memos, memos);
+    renderMemos();
+    toast("메모를 지웠어요");
+  });
+  $("#memoInput").addEventListener("keydown", function(e){
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); addMemo(); }
+  });
+
+  /* ---------------- 설정 ---------------- */
+  var modal = $("#settingsModal");
+  function openSettings(){
+    $("#dbUrl").value = cfg.db || "";
+    $("#bossName").value = cfg.name || "";
+    modal.classList.add("open");
+  }
+  function closeSettings(){ modal.classList.remove("open"); }
+
+  $("#btnSettings").addEventListener("click", openSettings);
+  $("#setCancel").addEventListener("click", closeSettings);
+  modal.addEventListener("click", function(e){ if (e.target === modal) closeSettings(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeSettings(); });
+
+  $("#setSave").addEventListener("click", function(){
+    var db = $("#dbUrl").value.trim();
+    var nm = $("#bossName").value.trim();
+    if (db && !/^https?:\/\//i.test(db)) { toast("주소는 https:// 로 시작해야 해요"); return; }
+    cfg.db = db;
+    cfg.name = nm || "승하";
+    store.set(K.cfg, cfg);
+    closeSettings();
+    applyUi();
+    renderChat();
+    if (db) toast("실시간 동기화 주소를 저장했어요 ✨");
+    else toast("이 기기에만 저장하도록 설정했어요");
+  });
+
+  /* ---------------- 시작 ---------------- */
+  renderRooms();
+  renderTasks();
+  renderMemos();
+  applyUi();
+  setTab(ui.tab || "map", { keepScroll: true });
+})();
+</script>
+</body>
+</html>
