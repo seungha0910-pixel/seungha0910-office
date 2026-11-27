@@ -421,6 +421,20 @@
   }
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
+  @media (max-width:430px){
+    .tabs-in{padding:8px 8px;gap:3px}
+    .tab{padding:9px 7px;font-size:12px;gap:4px}
+    .tab .t-ico{font-size:13px}
+    .head-in{padding:10px 12px 8px;gap:8px}
+    .brand-badge{width:40px;height:40px;flex-basis:40px;font-size:19px;border-radius:13px}
+    .brand h1{font-size:16px}
+    .conn{font-size:11px;padding:4px 8px}
+    .icon-btn{width:34px;height:34px;border-radius:11px;font-size:15px}
+    nav.tabs{top:60px}
+    main{padding:12px 10px 32px}
+    .card{padding:14px}
+  }
+
   /* ---------- desktop ---------- */
   @media (min-width:820px){
     body{font-size:15px}
@@ -845,7 +859,7 @@
     renderRooms();
     renderChat();
     scrollChat();
-    toast(ROOMS[ui.room].icon + " " + ROOMS[ui.room].name + "으로 이동했어요");
+    toast(ROOMS[ui.room].icon + " " + ROOMS[ui.room].name + "로 이동했어요");
   }
 
   document.addEventListener("click", function(e){
