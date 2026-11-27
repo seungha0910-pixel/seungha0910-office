@@ -4,7 +4,7 @@
 
 ## 접속 주소
 
-👉 https://seungha0910-pixel.github.io/seungha-office/
+👉 https://seungha0910-pixel.github.io/seungha0910-office/
 
 ## 탭 소개
 

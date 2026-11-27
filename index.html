@@ -586,7 +586,7 @@
         <div class="kv"><span>지메일 자동 정리</span><b>매일 23:00</b></div>
         <div class="kv"><span>무료체험 레이더</span><b>월 · 목 12:30</b></div>
         <div class="kv"><span>아침 브리핑</span><b>매일 06:10</b></div>
-        <div class="kv"><span>만기 · 반품 챙김</span><b>날짜 맞춰 알림</b></div>
+        <div class="kv"><span>만기 · 마감 챙김</span><b>날짜 맞춰 알림</b></div>
         <p class="muted" style="margin:12px 0 0">작업을 체크하면 바로 저장돼요. 알림·자동화는 피클 앱에서 뜽하에게 말 걸어 추가할 수 있어요.</p>
       </div>
     </div>
@@ -714,24 +714,24 @@
 
   /* ---------------- 시드 데이터 ---------------- */
   var SEED_TASKS = [
-    { id: "t1", text: "11/27 14:50 하이원 스마트체크인 알림", tag: "알림", now: true, done: false },
-    { id: "t2", text: "11/30 장관 표창 추천 마감 대기", tag: "업무", done: false },
-    { id: "t3", text: "12/04 19:00 아파트 대림 미팅", tag: "대외", done: false },
-    { id: "t4", text: "12/04 우리은행 퇴직연금 만기 알림", tag: "금융", done: false },
-    { id: "t5", text: "12/07~09 입대의 회장 전자투표", tag: "대외", done: false },
-    { id: "t6", text: "매일 23:00 지메일 자동 정리", tag: "자동화", auto: true, done: false },
+    { id: "t1", text: "오늘 아침 브리핑 확인하기", tag: "알림", now: true, done: false },
+    { id: "t2", text: "이번 주 일정 한 번에 정리하기", tag: "업무", done: false },
+    { id: "t3", text: "다음 회의 안건 미리 적어두기", tag: "업무", done: false },
+    { id: "t4", text: "만기·마감일 챙김 알림 확인", tag: "금융", done: false },
+    { id: "t5", text: "가족 일정 함께 보기", tag: "가족", done: false },
+    { id: "t6", text: "매일 23:00 메일 자동 정리", tag: "자동화", auto: true, done: false },
     { id: "t7", text: "월/목 12:30 무료체험 레이더", tag: "자동화", auto: true, done: false }
   ];
 
   var SEED_CHATS = {
     command: [
-      { who: "bot", text: "대장님, 아침 브리핑 준비 끝났습니다! ☀️ 오늘은 14:50 하이원 가족여행 스마트체크인 알림을 맞춰 뒀어요.", time: "07:05" },
-      { who: "me",  text: "오, 오늘 체크인 알림 챙겨줘", time: "07:08" },
-      { who: "bot", text: "네, 대장님! 14:50에 알림 드릴게요. 12/04 퇴직연금 만기와 12/07~09 전자투표도 작업실에 올려 뒀습니다. 🐣", time: "07:08" }
+      { who: "bot", text: "대장님, 아침 브리핑 준비 끝났습니다! ☀️ 오늘 확인하실 일정과 챙길 일을 정리해 두었어요.", time: "07:05" },
+      { who: "me",  text: "오늘 일정 브리핑 해줘", time: "07:08" },
+      { who: "bot", text: "네, 대장님! 오늘 일정과 알림은 작업실 탭에 정리해 뒀어요. 필요한 일은 @뜽하로 말만 걸어 주세요. 🐣", time: "07:08" }
     ],
     meeting: [
       { who: "bot", text: "대회의실입니다. 여기서는 여러 비서가 함께 봐요. 의제를 말씀하시면 정리해 드릴게요.", time: "07:00" },
-      { who: "bot", text: "오늘의 안건 후보: ① 11/30 장관 표창 추천 마감 ② 12/03 조직개편 워크숍 발표 ③ 아파트 회장 재선 일정", time: "07:01" }
+      { who: "bot", text: "오늘의 안건 후보: ① 이번 주 일정 정리 ② 다음 회의 준비 ③ 챙길 일 확인", time: "07:01" }
     ],
     lounge: [
       { who: "bot", text: "라운지에서 잠깐 쉬고 있어요 ☕ 커피 한 잔 하면서 오늘 이야기 편하게 하셔도 돼요.", time: "07:02" }
